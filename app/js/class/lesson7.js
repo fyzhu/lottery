@@ -25,10 +25,29 @@
             
         }
     }
-    test(1,2,3,4,'q')
+    test3(1,2,3,4,'q')
 }
 
 {
     console.log(...[1,2,4]);
+    console.log('a',...[1,2,4]);
     
+}
+//箭头函数
+{
+    let arrow=v=>v*2
+    let arrow2=()=>5
+    console.log('arrow',arrow(3))
+    console.log('arrow2',arrow2())
+}
+//尾调用
+{
+    function tail(x) {
+        console.log('tail',x);        
+    }
+    function fx(x) {
+        return tail(x)
+        
+    }
+    fx(123)
 }
