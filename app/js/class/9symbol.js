@@ -14,6 +14,7 @@
     let obj={
         [a1]:'123',
         'abc':'456',
+        // abc:4567,
         'c':456,
         'd':'test'
     }
@@ -35,4 +36,28 @@
         console.log('ownKeys',item,obj[item]);
         
     })
+}
+{
+    let map
+    map = {
+        test1: {
+
+            title: 'test1',
+            items: []
+        }
+
+    }
+    map['test2'] = {
+
+        title: 'test2',
+        items: []
+
+    }
+    map['3'] = {
+
+        title: '3',
+        items: []
+
+    }
+    console.log(map)
 }

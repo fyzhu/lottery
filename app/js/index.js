@@ -1,4 +1,4 @@
-import './class/lesson8';
+import './class/10set-map';
 
 // import "babel-polyfill";
 // import  Lottery  from "./lottery";
