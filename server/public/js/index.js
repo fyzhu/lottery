@@ -86,41 +86,52 @@ __webpack_require__(2);
 "use strict";
 
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//Symbol
+//iterator
 {
-    var a1 = Symbol();
-    var a2 = Symbol();
-    console.log(a1 === a2, Object.is(a1, a2));
-    var a3 = Symbol.for('a3');
-    var a4 = Symbol.for('a3');
-    console.log(a3 === a4, Object.is(a3, a4));
+    var arr = ['hello', 'world'];
+    var map = arr[Symbol.iterator](); //调用数组的Symbol.iterator属性的方法，数组原生具备iterator接口（即默认部署了Symbol.iterator属性）
+    console.log(map.next());
+    console.log(map.next());
+    console.log(map.next());
 }
 {
-    var _obj;
-
-    //Symbol应用,当你定义了一个abc【symbol类型的】时，其他人还可以定义abc，互不影响
-    var _a = Symbol.for('abc');
-    var obj = (_obj = {}, _defineProperty(_obj, _a, '123'), _defineProperty(_obj, 'abc', '456'), _defineProperty(_obj, 'c', 456), _defineProperty(_obj, 'd', 'test'), _obj);
-    console.log(obj);
-    //for of 取不到symbol的属性
+    var obj = _defineProperty({
+        start: [1, 3, 2],
+        end: [7, 9, 8]
+    }, Symbol.iterator, function () {
+        //es6中新增的，[]里面是一个变量名
+        var self = this;
+        var index = 0;
+        var arr = self.start.concat(self.end);
+        var len = arr.length;
+        return {
+            next: function next() {
+                if (index < len) {
+                    return {
+                        value: arr[index++],
+                        done: false
+                    };
+                } else {
+                    return {
+                        value: arr[index++],
+                        done: true
+                    };
+                }
+            }
+        };
+    });
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
 
     try {
-        for (var _iterator = Object.entries(obj)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var _step$value = _slicedToArray(_step.value, 2),
-                key = _step$value[0],
-                value = _step$value[1];
+        for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var key = _step.value;
 
-            console.log(key, value);
-            //谷歌浏览器有bug，不显示最后一个
+            console.log(key);
         }
-        //使用Object.getOwnPropertySymbols取symbol属性
     } catch (err) {
         _didIteratorError = true;
         _iteratorError = err;
@@ -135,16 +146,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
         }
     }
+}
+{
+    var _arr = ['hello', 'world'];
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
 
-    Object.getOwnPropertySymbols(obj).forEach(function (item) {
-        console.log(item, obj[item]);
-    });
+    try {
+        for (var _iterator2 = _arr[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var value = _step2.value;
 
-    //使用reflect获取普通属性和symbol属性
-
-    Reflect.ownKeys(obj).forEach(function (item) {
-        console.log('ownKeys', item, obj[item]);
-    });
+            console.log(value);
+        }
+    } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        } finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
 }
 
 /***/ })
