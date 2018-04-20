@@ -1,5 +1,5 @@
-import "babel-polyfill";
-import  Lottery  from "./lottery";
-// import './class/lesson12';
+import './class/lesson9';
 
-const syy = new Lottery();
+// import "babel-polyfill";
+// import  Lottery  from "./lottery";
+// const syy = new Lottery();
