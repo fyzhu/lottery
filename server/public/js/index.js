@@ -86,51 +86,68 @@ __webpack_require__(2);
 "use strict";
 
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//iterator
+//对象
 {
-    var arr = ['hello', 'world'];
-    var map = arr[Symbol.iterator](); //调用数组的Symbol.iterator属性的方法，数组原生具备iterator接口（即默认部署了Symbol.iterator属性）
-    console.log(map.next());
-    console.log(map.next());
-    console.log(map.next());
+    //简洁表示法
+    var o = 1;
+    var k = 2;
+    var es5 = {
+        o: o,
+        k: k
+    };
+    var es6 = {
+        o: o,
+        k: k
+    };
+    console.log(es5, es6);
+
+    var es5_method = {
+        hello: function hello() {
+            console.log('hello');
+        }
+    };
+    var es6_method = {
+        hello: function hello() {
+            console.log('hello');
+        }
+    };
+    es5_method.hello();
+    es6_method.hello();
 }
 {
-    var obj = _defineProperty({
-        start: [1, 3, 2],
-        end: [7, 9, 8]
-    }, Symbol.iterator, function () {
-        //es6中新增的，[]里面是一个变量名
-        var self = this;
-        var index = 0;
-        var arr = self.start.concat(self.end);
-        var len = arr.length;
-        return {
-            next: function next() {
-                if (index < len) {
-                    return {
-                        value: arr[index++],
-                        done: false
-                    };
-                } else {
-                    return {
-                        value: arr[index++],
-                        done: true
-                    };
-                }
-            }
-        };
-    });
+    //属性表达式
+    var a = 'b';
+    var es5_obj = {
+        a: 'c',
+        b: 'c'
+    };
+    var es6_obj = _defineProperty({}, a, 'c');
+    console.log(es5_obj, es6_obj);
+}
+{
+    //新增API
+    //Object.is 与三等===
+    console.log(Object.is('abc', 'abc'), 'abc' === 'abc');
+    console.log(Object.is([], []), [] === []);
+    //Object.assign(浅复制)
+    console.log(Object.assign({ a: 'a' }, { b: 'b' }));
+    //Object.entries()
+    var test = { k: 123, o: 456 };
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
 
     try {
-        for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var key = _step.value;
+        for (var _iterator = Object.entries(test)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var _step$value = _slicedToArray(_step.value, 2),
+                key = _step$value[0],
+                value = _step$value[1];
 
-            console.log(key);
+            console.log([key, value]);
         }
     } catch (err) {
         _didIteratorError = true;
@@ -148,31 +165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 }
 {
-    var _arr = ['hello', 'world'];
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-        for (var _iterator2 = _arr[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var value = _step2.value;
-
-            console.log(value);
-        }
-    } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                _iterator2.return();
-            }
-        } finally {
-            if (_didIteratorError2) {
-                throw _iteratorError2;
-            }
-        }
-    }
+    //扩展运算符，babel暂不支持
 }
 
 /***/ })

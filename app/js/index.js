@@ -1,4 +1,4 @@
-import './class/lesson14';
+import './class/lesson8';
 
 // import "babel-polyfill";
 // import  Lottery  from "./lottery";
